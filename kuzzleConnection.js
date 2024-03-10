@@ -8,6 +8,7 @@ async function connectToKuzzle() {
     try {
         await kuzzle.connect();
         console.log('Connected to Kuzzle successfully');
+        return kuzzle;
     } catch (error) {
         console.error(`Failed to connect to Kuzzle: ${error.message}`);
     }
