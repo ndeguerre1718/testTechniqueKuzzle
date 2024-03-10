@@ -42,6 +42,7 @@ export default {
           const data = notification.result._source;
 
           this.errorMessage = '';
+          this.warningMessage = '';
 
           if (!data.author || data.author.trim().length === 0) {
             this.errorMessage = 'A message must have an author.';
