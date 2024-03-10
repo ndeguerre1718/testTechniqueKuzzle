@@ -6,18 +6,19 @@
         <strong>{{ msg.author }}:</strong> {{ msg.message }}
       </li>
     </ul>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
 
 
 <script>
-// Assurez-vous que le chemin d'accès est correct pour vos imports
 import { Kuzzle, WebSocket } from 'kuzzle-sdk';
 
 export default {
   data() {
     return {
       messages: [],
+      errorMessage: '',
     };
   },
   async mounted() {
@@ -31,14 +32,19 @@ export default {
         if (notification.type === 'document' && notification.action === 'create') {
           const data = notification.result._source;
 
-          if (!data.author || data.author.trim().length === 0 || data.message.length > 255) {
-            // Gérer l'erreur si nécessaire
+          this.errorMessage = '';
+
+          if (!data.author || data.author.trim().length === 0) {
+            this.errorMessage = 'A message must have an author.';
             return;
           }
 
-          // Ajout du message reçu à la liste des messages pour l'affichage
+          if (data.message.length > 255) {
+            this.errorMessage = 'The message is too long. It must be under 255 characters.';
+            return;
+          }
+
           this.messages.push({
-            // Vous pouvez choisir d'utiliser `Date.now()` ou un autre identifiant unique pour `id`
             id: Date.now(),
             author: data.author,
             message: data.message
@@ -90,6 +96,11 @@ export default {
 
 .message-item strong {
   color: #3079b4;
+}
+
+.error-message {
+  color: #ff3860; /* rouge-rose pour les erreurs */
+  font-weight: bold;
 }
 </style>
 
