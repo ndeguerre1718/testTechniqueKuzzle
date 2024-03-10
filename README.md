@@ -18,6 +18,7 @@ Pour installer les dépendances requises par le projet, suivez ces étapes :
 
 ```bash
 npm install
+```
 
 Cette commande installe toutes les dépendances listées dans le fichier `package.json` du projet.
 
