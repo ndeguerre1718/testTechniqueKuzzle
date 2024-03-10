@@ -31,6 +31,7 @@ Une fois les dépendances installées, vous pouvez lancer l'application en mode 
 
    ```bash
    npm run serve
+   ```
 
 
 ## Structure des Branches du Projet
