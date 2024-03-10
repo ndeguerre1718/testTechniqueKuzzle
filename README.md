@@ -60,3 +60,45 @@ Le développement de l'interface utilisateur pour le chat se trouve dans cette b
 Enfin, cette branche ajoute une fonctionnalité importante pour détecter les mots inappropriés dans les messages et émettre des avertissements. Elle contribue à maintenir un environnement de chat respectueux et sécurisé.
 
 Chacune de ces branches a été créée pour isoler le développement d'une fonctionnalité spécifique, offrant ainsi une organisation claire et facilitant les revues de code. Avant de fusionner ces fonctionnalités dans la branche principale `master`, elles sont d'abord intégrées dans la branche `develop`. Cela permet de réaliser des tests d'intégration complets et d'assurer la stabilité du code. Une fois les fonctionnalités validées au sein de `develop` et que tous les tests sont passés avec succès, elles peuvent alors être fusionnées dans `master` pour un déploiement.
+
+# Tester l'API de Chat avec Postman
+
+Pour s'assurer que l'API de chat fonctionne correctement, vous pouvez envoyer des requêtes de test à l'aide de l'outil Postman. Postman est une application populaire pour tester les APIs, qui permet d'envoyer des requêtes HTTP et de voir les réponses.
+
+## Étapes pour Tester avec Postman
+
+1. **Ouvrir Postman**: Lancez l'application Postman sur votre ordinateur.
+
+2. **Créer une Nouvelle Requête**: Cliquez sur le bouton `+ New` ou `+` pour créer un nouvel onglet de requête.
+
+3. **Configurer la Requête**:
+   - **Méthode**: Sélectionnez la méthode HTTP `POST` dans le menu déroulant.
+   - **URL**: Saisissez l'URL de l'API de votre chat pour créer des messages. Par exemple: `http://localhost:7512/chat/chat-messages/_create`.
+
+4. **Définir le Corps de la Requête**:
+   - Cliquez sur l'onglet `Body`.
+   - Sélectionnez l'option `raw` et choisissez `JSON` comme format.
+   - Saisissez les détails du message sous forme de JSON. Par exemple :
+
+     ```json
+     {
+       "author": "John Doe",
+       "message": "Hello, World!"
+     }
+     ```
+
+5. **Envoyer la Requête**: Cliquez sur le bouton `Send` pour envoyer votre requête à l'API.
+
+6. **Vérifier la Réponse**: Examinez la réponse reçue pour vous assurer que le message a été créé avec succès. Vous devriez recevoir un statut de réponse `200 OK` et les détails du message dans le corps de la réponse.
+
+## Capture d'écran de Postman
+
+Voici un exemple de configuration de requête dans Postman pour envoyer un message :
+
+![image](https://github.com/ndeguerre1718/testTechniqueKuzzle/assets/115724427/606543ea-c722-4d80-b6d5-fb8437c62898)
+
+
+## Problèmes Communs
+
+- **Erreur de Connexion**: Si vous ne pouvez pas vous connecter, assurez-vous que le serveur Kuzzle est en cours d'exécution et accessible.
+- **Erreur dans les Données Envoyées**: Si vous obtenez une erreur liée aux données, vérifiez que le JSON est bien formaté et que toutes les propriétés requises sont présentes.
