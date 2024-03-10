@@ -1,5 +1,37 @@
 # Test Technique Kuzzle
 
+# Démarrage du Projet
+
+Ce guide vous aidera à lancer l'application Vue.js localement sur votre machine.
+
+## Prérequis
+
+Avant de commencer, assurez-vous que vous avez [Node.js](https://nodejs.org/) installé sur votre machine. Ce projet nécessite Node.js pour exécuter le serveur de développement et gérer les dépendances.
+
+## Installation des Dépendances
+
+Pour installer les dépendances requises par le projet, suivez ces étapes :
+
+1. Ouvrez un terminal.
+2. Naviguez jusqu'au répertoire racine de votre projet en utilisant la commande `cd chemin/vers/votre/projet`.
+3. Exécutez la commande suivante :
+
+```bash
+npm install
+
+Cette commande installe toutes les dépendances listées dans le fichier `package.json` du projet.
+
+## Lancement de l'Application
+
+Une fois les dépendances installées, vous pouvez lancer l'application en mode développement :
+
+1. Dans le terminal, assurez-vous d'être toujours dans le répertoire racine du projet.
+2. Exécutez la commande suivante :
+
+   ```bash
+   npm run serve
+
+
 ## Structure des Branches du Projet
 
 Dans mon projet, j'ai organisé le développement en utilisant une structure de branches spécifique pour faciliter la gestion des fonctionnalités et des corrections. Voici les branches que vous trouverez dans le dépôt :
