@@ -6,6 +6,7 @@
         <strong>{{ msg.author }}:</strong> {{ msg.message }}
       </li>
     </ul>
+    <p v-if="warningMessage" class="warning-message">{{ warningMessage }}</p>
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
@@ -19,7 +20,15 @@ export default {
     return {
       messages: [],
       errorMessage: '',
+      warningMessage: '',
     };
+  },
+  methods: {
+    detectBadWords(message) {
+      const badWordsList = ['shower', 'trash', 'stinky'];
+      const regex = new RegExp(badWordsList.join('|'), 'i');
+      return regex.test(message);
+    }
   },
   async mounted() {
     const kuzzle = new Kuzzle(new WebSocket('localhost'));
@@ -44,6 +53,9 @@ export default {
             return;
           }
 
+          if (this.detectBadWords(data.message)) {
+            this.warningMessage = `Warning: Inappropriate language detected from ${data.author}.`;
+          }
           this.messages.push({
             id: Date.now(),
             author: data.author,
@@ -101,6 +113,11 @@ export default {
 .error-message {
   color: #ff3860; /* rouge-rose pour les erreurs */
   font-weight: bold;
+}
+
+.warning-message {
+  color: #fa6d47; /* Choisir une couleur visible pour les avertissements */
+  /* ... autres styles pour warning-message ... */
 }
 </style>
 
