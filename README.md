@@ -22,6 +22,32 @@ Voici quelques perspectives basées sur mon expérience :
 
 En résumé, l'expérience globale du développeur avec Kuzzle a été positive, avec une documentation complète et l'avantage supplémentaire du support de l'IA qui se sont avérés être des atouts inestimables tout au long du parcours de développement.
 
+## Détail des Notifications Reçues de Kuzzle (Exercice 2)
+
+Lorsqu'un événement se produit dans la collection `chat-messages`, une notification est envoyée par l'API Kuzzle. Voici une explication des champs clés présents dans une telle notification :
+
+![image](https://github.com/ndeguerre1718/testTechniqueKuzzle/assets/115724427/2dd92efe-e9df-4efe-b7e1-d2309160f4a0)
+
+
+- `type` : Le type de la notification. `document` signifie que la notification concerne une opération sur un document.
+- `status` : Le code de statut HTTP de l'opération. Un statut `200` indique que l'opération a été réalisée avec succès.
+- `action` : L'action effectuée, ici `create`, qui signifie qu'un document a été créé dans la collection.
+- `scope` : Indique si l'opération concerne l'entrée (`in`) ou la sortie (`out`) des données. `in` signifie que le document a été ajouté à la collection.
+- `result` : Contient le résultat de l'opération, y compris :
+  - `_id` : L'identifiant unique du document créé.
+  - `_source` : Les données du document créé, incluant `message`, `user`, et `_kuzzle_info` avec des métadonnées système comme les horodatages et l'identité de l'utilisateur effectuant l'opération.
+  - `_version` : La version du document, utile pour la gestion des conflits en écriture.
+- `node` : L'identifiant du nœud Kuzzle ayant traité la requête.
+- `event` : Le type d'événement, ici `write`, indiquant une opération d'écriture dans la base de données.
+- `requestId` : Un identifiant unique pour la requête ayant généré cette notification, utilisé pour le débogage et le suivi.
+- `timestamp` : L'horodatage de l'événement.
+- `volatile` : Contient des informations supplémentaires fournies par le client, telles que `client`, `sdkInstanceId`, et `sdkName`.
+- `index` et `collection` : Les noms de l'index et de la collection concernés par l'événement.
+- `controller` : Le contrôleur Kuzzle utilisé, ici `document`, pour les opérations de gestion des documents.
+- `protocol` : Le protocole de communication utilisé, dans cet exemple `websocket`.
+- `room` : L'identifiant de la salle ou du canal de souscription à travers lequel la notification a été reçue.
+
+Ces informations détaillées sont cruciales pour comprendre la nature et le résultat des opérations effectuées via l'API Kuzzle et permettent un suivi précis des activités au sein de l'application.
 
 
 
